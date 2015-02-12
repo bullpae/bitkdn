@@ -18,7 +18,7 @@ public class Test01 {
     board.viewCnt = 1;
     board.createDate = new Date();
 
-    System.out.println(board.title + age);
+    System.out.println(board.title);
   }
 
 }
