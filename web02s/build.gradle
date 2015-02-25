@@ -1,0 +1,34 @@
+apply plugin: 'java'
+apply plugin: 'war'
+apply plugin: 'eclipse-wtp'
+
+version = '1.0' // jar 파일 만들 때 파일명에 들어갈 버전 지정.
+
+compileJava {
+    sourceCompatibility = 1.7 // 컴파일 자바 버전 지정
+    options.encoding = 'UTF-8'
+}
+ 
+// 의존 라이브러르를 다운로드 받을 서버 지정.
+repositories {
+    mavenCentral() // 메이븐 중앙 서버를 사용! repo.maven.com
+}
+
+// 프로젝트에서 사용할 의존 라이브러리 지정
+// 의존 라이브러리 이름 검색 -> www.mvnrepository.com
+dependencies {
+    // servlet API는 컴파일 할 때만 사용해야 한다. 배포는 하지 말아야 하므로 providedcompile 명령을 사용
+    // 컴파일
+    providedCompile 'javax.servlet:javax.servlet-api:3.1.0'
+    
+    
+    // 컴파일 + 배포
+    compile 'jstl:jstl:1.2'
+    compile 'mysql:mysql-connector-java:5.1.34'
+    compile 'org.mybatis:mybatis:3.2.8'
+
+    compile group: 'commons-collections', name: 'commons-collections', version: '3.2'
+    
+    // 컴파일 + 테스트 
+    testCompile group: 'junit', name: 'junit', version: '4.+'
+}
